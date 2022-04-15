@@ -1,5 +1,7 @@
 package com.myclin.entity;
 
+import java.math.BigDecimal;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,8 +19,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Sala {
-	
+public class Servico {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
@@ -30,4 +32,6 @@ public class Sala {
 	@Column(length = 255)
 	private String descricao;
 	
+	@Column
+	private BigDecimal valor;
 }
