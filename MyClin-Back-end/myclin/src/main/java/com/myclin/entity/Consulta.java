@@ -1,8 +1,5 @@
 package com.myclin.entity;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,9 +7,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-
-
-import com.fasterxml.jackson.annotation.JsonFormat;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -24,30 +18,34 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Agenda {
-	
+public class Consulta {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "idagenda")
 	private Integer id;
 	
-	@Column(name = "data_atendimento")
-	@JsonFormat(pattern = "dd/MM/yyyy")
-	private LocalDate dataAtendimento;
+	@Column(length = 255)
+	private String atendimento;
 	
-	@Column(name = "hora")
-	@JsonFormat(pattern = "hh:mm")
-	private LocalTime hora;
+	@Column(length = 255)
+	private String anexoUm;
 	
-	@Column(length = 50)
-	private String status;
-	
-	@ManyToOne
-	@JoinColumn(name = "funcionario_id")
-	private Funcionario funcionario;
+	@Column(length = 255)
+	private String AnexoDois;
 	
 	@ManyToOne
 	@JoinColumn(name = "clinica_id")
 	private Clinica clinica;
 	
+	@ManyToOne
+	@JoinColumn(name = "servico_id")
+	private Servico servico;
+	
+	@ManyToOne
+	@JoinColumn(name = "paciente_id")
+	private Paciente paciente;
+	
+	@ManyToOne
+	@JoinColumn(name = "funcionario_id")
+	private Funcionario funcionario;
 }

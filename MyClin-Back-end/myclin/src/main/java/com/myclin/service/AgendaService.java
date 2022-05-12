@@ -30,8 +30,7 @@ public class AgendaService {
 	
 	public Agenda CreateAgenda(AgendaDTO dto) {
 		LocalDate data = LocalDate.parse(dto.getDataAtendimento(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-		LocalTime horaInicio = LocalTime.parse(dto.getHoraInicio(), DateTimeFormatter.ofPattern("HH:mm"));
-		LocalTime horaFim = LocalTime.parse(dto.getHoraFim(), DateTimeFormatter.ofPattern("HH:mm"));
+		LocalTime hora = LocalTime.parse(dto.getHora(), DateTimeFormatter.ofPattern("HH:mm"));
 		Integer idFuncionario = dto.getIdFuncionario();
 		Funcionario funcionario =
 				funcionarioRepository
@@ -43,9 +42,9 @@ public class AgendaService {
 		Agenda agenda = new Agenda();
 		agenda.setFuncionario(funcionario);
 		agenda.setDataAtendimento(data);
-		agenda.setHoraInicio(horaInicio);
-		agenda.setHoraFim(horaFim);
-		agenda.setModelo(dto.getModelo());
+		agenda.setHora(hora);
+		agenda.setPaciente(dto.getPaciente());
+		agenda.setStatus(dto.getStatus());
 		
 		return repository.save(agenda);
 	}
@@ -63,8 +62,7 @@ public class AgendaService {
 	
 	public ResponseEntity<Agenda> updateAgendaById(AgendaDTO agenda, Integer id){
 		LocalDate data = LocalDate.parse(agenda.getDataAtendimento(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-		LocalTime horaInicio = LocalTime.parse(agenda.getHoraInicio(), DateTimeFormatter.ofPattern("HH:mm"));
-		LocalTime horaFim = LocalTime.parse(agenda.getHoraFim(), DateTimeFormatter.ofPattern("HH:mm"));
+		LocalTime hora = LocalTime.parse(agenda.getHora(), DateTimeFormatter.ofPattern("HH:mm"));
 		Integer idFuncionario = agenda.getIdFuncionario();
 		Funcionario funcionario =
 				funcionarioRepository
@@ -78,9 +76,9 @@ public class AgendaService {
 				.map(agendaToUpdate ->{
 					agendaToUpdate.setFuncionario(funcionario);;
 					agendaToUpdate.setDataAtendimento(data);
-					agendaToUpdate.setHoraInicio(horaInicio);
-					agendaToUpdate.setHoraFim(horaFim);
-					agendaToUpdate.setModelo(agenda.getModelo());
+					agendaToUpdate.setHora(hora);
+					agendaToUpdate.setPaciente(agenda.getPaciente());
+					agendaToUpdate.setStatus(agenda.getStatus());
 					Agenda update = repository.save(agendaToUpdate);
 					return ResponseEntity.ok().body(update);})
 				.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Agenda não encontrado"));

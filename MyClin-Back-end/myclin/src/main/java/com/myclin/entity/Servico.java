@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 
 import lombok.AllArgsConstructor;
@@ -34,4 +36,8 @@ public class Servico {
 	
 	@Column
 	private BigDecimal valor;
+	
+	@ManyToOne
+	@JoinColumn(name = "clinica_id")
+	private Clinica clinica;
 }

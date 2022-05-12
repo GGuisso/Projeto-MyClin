@@ -1,12 +1,14 @@
 package com.myclin.entity;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.validation.constraints.NotNull;
 
@@ -42,12 +44,30 @@ public class Clinica {
 	@Column(nullable = false, length = 50)
 	private String email;
 	
+	@Column(length = 9)
+	private String cep;
+	
 	@Column(length = 50)
 	private String endereco;
+	
+	@Column(name = "num_endereco")
+	private int numeroEndereco;
+	
+	@Column(length = 50)
+	private String complemento;
 	
 	@Column(name = "data_cadastro")
 	@JsonFormat(pattern = "dd/MM/yyyy")
 	private LocalDate dataCadastro;
+	
+	@OneToMany(mappedBy = "clinica")
+	private List<Funcionario> funcionario;
+	
+	@OneToMany(mappedBy = "clinica")
+	private List<Paciente> paciente;
+	
+	@OneToMany(mappedBy = "clinica")
+	private List<Servico> servico;
 	
 	@PrePersist
 	public void prePersist() {

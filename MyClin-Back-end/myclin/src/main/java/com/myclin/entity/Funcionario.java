@@ -1,12 +1,16 @@
 package com.myclin.entity;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.validation.constraints.NotNull;
 
@@ -32,7 +36,7 @@ public class Funcionario {
 	@NotNull(message = "Nome é campo obrigatório")
 	private String nome;
 	
-	@Column(nullable = false, length = 9)
+	@Column(name = "data_nascimento", nullable = false, length = 9)
 	private String dataNascimento;
 	
 	@Column(nullable = false, length = 20)
@@ -45,15 +49,32 @@ public class Funcionario {
 	@Column(nullable = false, length = 50)
 	private String email;
 	
+	@Column(length = 9)
+	private String cep;
+	
 	@Column(length = 50)
 	private String endereco;
 	
+	@Column(name = "num_endereco")
+	private int numeroEndereco;
+	
 	@Column(length = 50)
-	private String funcao;
+	private String complemento;
 	
 	@Column(name = "data_cadastro")
 	@JsonFormat(pattern = "dd/MM/yyyy")
 	private LocalDate dataCadastro;
+	
+	@ManyToOne
+	@JoinColumn(name = "funcao_id")
+	private Funcao funcao;
+	
+	@ManyToOne
+	@JoinColumn(name = "clinica_id")
+	private Clinica clinica;
+	
+	@OneToMany(mappedBy = "funcionario")
+	private List<Consulta> consulta;
 	
 	@PrePersist
 	public void prePersist() {

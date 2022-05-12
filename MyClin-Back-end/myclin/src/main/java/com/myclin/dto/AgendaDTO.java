@@ -10,7 +10,7 @@ public class AgendaDTO {
 	private Integer id;
 	private Integer idFuncionario;
 	private String dataAtendimento;
-	private String modelo;
-	private String horaInicio;
-	private String horaFim;
+	private String hora;
+	private String paciente;
+	private String status;
 }
