@@ -43,7 +43,6 @@ public class AgendaService {
 		agenda.setFuncionario(funcionario);
 		agenda.setDataAtendimento(data);
 		agenda.setHora(hora);
-		agenda.setPaciente(dto.getPaciente());
 		agenda.setStatus(dto.getStatus());
 		
 		return repository.save(agenda);
@@ -77,7 +76,6 @@ public class AgendaService {
 					agendaToUpdate.setFuncionario(funcionario);;
 					agendaToUpdate.setDataAtendimento(data);
 					agendaToUpdate.setHora(hora);
-					agendaToUpdate.setPaciente(agenda.getPaciente());
 					agendaToUpdate.setStatus(agenda.getStatus());
 					Agenda update = repository.save(agendaToUpdate);
 					return ResponseEntity.ok().body(update);})

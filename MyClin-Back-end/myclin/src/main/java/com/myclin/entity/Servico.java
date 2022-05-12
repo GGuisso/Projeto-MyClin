@@ -11,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -38,6 +40,7 @@ public class Servico {
 	private BigDecimal valor;
 	
 	@ManyToOne
+	@JsonBackReference
 	@JoinColumn(name = "clinica_id")
 	private Clinica clinica;
 }

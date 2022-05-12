@@ -14,6 +14,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import lombok.AllArgsConstructor;
@@ -36,7 +37,7 @@ public class Paciente {
 	@NotNull(message = "Nome é campo obrigatório")
 	private String nome;
 	
-	@Column(name = "data_nascimento", nullable = false, length = 9)
+	@Column(name = "data_nascimento", nullable = false, length = 20)
 	private String dataNascimento;
 	
 	@Column(nullable = false, length = 20)
@@ -65,7 +66,9 @@ public class Paciente {
 	@JsonFormat(pattern = "dd/MM/yyyy")
 	private LocalDate dataCadastro;
 	
+	
 	@ManyToOne
+	@JsonBackReference
 	@JoinColumn(name = "clinica_id")
 	private Clinica clinica;
 	

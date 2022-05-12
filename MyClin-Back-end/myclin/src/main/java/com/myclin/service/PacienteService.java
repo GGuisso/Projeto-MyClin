@@ -8,8 +8,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
-
+import com.myclin.dto.PacienteDTO;
+import com.myclin.entity.Clinica;
 import com.myclin.entity.Paciente;
+import com.myclin.repository.ClinicaRepository;
 import com.myclin.repository.PacienteRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -21,7 +23,30 @@ public class PacienteService {
 	@Autowired
 	private PacienteRepository repository;
 	
-	public Paciente CreatePaciente(Paciente paciente) {
+	@Autowired
+	private ClinicaRepository clinicaRepository;
+	
+	public Paciente CreatePaciente(PacienteDTO dto) {
+		Integer idClinica = dto.getIdClinica();
+		Clinica clinica =
+				clinicaRepository
+				.findById(idClinica)
+				.orElseThrow(() ->
+						new ResponseStatusException(
+								HttpStatus.BAD_REQUEST, "Clinica não encontrada"));
+		
+		Paciente paciente = new Paciente();
+		paciente.setClinica(clinica);
+		paciente.setNome(dto.getNome());
+		paciente.setDataNascimento(dto.getDataNascimento());
+		paciente.setCpf(dto.getCpf());
+		paciente.setTelefone(dto.getTelefone());
+		paciente.setEmail(dto.getEmail());
+		paciente.setCep(dto.getCep());
+		paciente.setEndereco(dto.getEndereco());
+		paciente.setNumeroEndereco(dto.getNumeroEndereco());
+		paciente.setComplemento(dto.getComplemento());
+		
 		return repository.save(paciente);
 	}
 	
@@ -37,7 +62,7 @@ public class PacienteService {
 	}
 	
 	public ResponseEntity<Paciente> updatePacienteById(Paciente paciente, Integer id){
-		return repository
+				return repository
 				.findById(id)
 				.map(pacienteToUpdate ->{
 					pacienteToUpdate.setNome(paciente.getNome());
@@ -46,6 +71,8 @@ public class PacienteService {
 					pacienteToUpdate.setTelefone(paciente.getTelefone());
 					pacienteToUpdate.setEmail(paciente.getEmail());
 					pacienteToUpdate.setEndereco(paciente.getEndereco());
+					pacienteToUpdate.setNumeroEndereco(paciente.getNumeroEndereco());
+					pacienteToUpdate.setComplemento(paciente.getComplemento());
 					Paciente update = repository.save(pacienteToUpdate);
 					return ResponseEntity.ok().body(update);})
 				.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Paciente não encontrado"));

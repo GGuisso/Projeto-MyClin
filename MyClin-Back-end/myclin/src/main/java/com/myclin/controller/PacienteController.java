@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.myclin.dto.PacienteDTO;
 import com.myclin.entity.Paciente;
 import com.myclin.service.PacienteService;
 
@@ -34,7 +35,7 @@ public class PacienteController {
 	@PostMapping("salvar")
 	@ResponseStatus(HttpStatus.CREATED)
 	@ApiOperation("Insere um novo Paciente")
-	public Paciente salvar(@RequestBody @Valid Paciente paciente) {
+	public Paciente salvar(@RequestBody @Valid PacienteDTO paciente) {
 		return pacienteService.CreatePaciente(paciente);
 	}
 	

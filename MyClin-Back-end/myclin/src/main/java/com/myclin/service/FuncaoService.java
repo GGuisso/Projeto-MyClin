@@ -7,7 +7,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.server.ResponseStatusException;
 
+import com.myclin.dto.FuncaoDTO;
+import com.myclin.entity.Clinica;
 import com.myclin.entity.Funcao;
+import com.myclin.repository.ClinicaRepository;
 import com.myclin.repository.FuncaoRepository;
 
 import org.springframework.stereotype.Service;
@@ -21,7 +24,22 @@ public class FuncaoService {
 	@Autowired
 	private FuncaoRepository repository;
 	
-	public Funcao CreateFuncao(Funcao funcao) {
+	@Autowired
+	private ClinicaRepository clinicaRepository;
+	
+	public Funcao CreateFuncao(FuncaoDTO dto) {
+		Integer idClinica = dto.getIdClinica();
+		Clinica clinica =
+				clinicaRepository
+				.findById(idClinica)
+				.orElseThrow(() ->
+						new ResponseStatusException(
+								HttpStatus.BAD_REQUEST, "Clinica não encontrada"));
+		
+		Funcao funcao = new Funcao();
+		funcao.setClinica(clinica);
+		funcao.setFuncao(dto.getFuncao());
+		
 		return repository.save(funcao);
 	}
 	

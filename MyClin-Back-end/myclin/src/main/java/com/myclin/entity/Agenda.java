@@ -10,7 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-
+import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -49,5 +49,9 @@ public class Agenda {
 	@ManyToOne
 	@JoinColumn(name = "clinica_id")
 	private Clinica clinica;
+	
+	@OneToOne
+	@JoinColumn(name = "consulta_id")
+	private Consulta consulta;
 	
 }

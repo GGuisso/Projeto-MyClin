@@ -14,6 +14,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import lombok.AllArgsConstructor;
@@ -70,11 +71,15 @@ public class Funcionario {
 	private Funcao funcao;
 	
 	@ManyToOne
+	@JsonBackReference
 	@JoinColumn(name = "clinica_id")
 	private Clinica clinica;
 	
 	@OneToMany(mappedBy = "funcionario")
 	private List<Consulta> consulta;
+	
+	@OneToMany(mappedBy = "funcionario")
+	private List<Agenda> agenda;
 	
 	@PrePersist
 	public void prePersist() {
