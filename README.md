@@ -14,12 +14,12 @@
 
 ### Features
 
-- [ ] Construindo API Rest 
-- [ ] Segurança da API
-- [ ] Sistema de login
-- [ ] Consumo da API
-- [ ] Persistencia de dados
-- [ ] Finalização do front-end
+- [ ] Construção das entidades 
+- [ ] Construção dos repositórios 
+- [ ] Construção das consultas sql
+- [ ] Construção dos endpoints
+- [ ] Construção do sistema de login 
+
 
 ### Autor
 

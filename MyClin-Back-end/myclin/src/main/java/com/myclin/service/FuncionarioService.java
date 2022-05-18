@@ -31,7 +31,7 @@ public class FuncionarioService {
 	@Autowired
 	private FuncaoRepository funcaoRepository;
 	
-	
+	 
 	public Funcionario CreateFuncionario(FuncionarioDTO dto) {
 		Integer idClinica = dto.getIdClinica();
 		Clinica clinica =
@@ -41,7 +41,7 @@ public class FuncionarioService {
 						new ResponseStatusException(
 								HttpStatus.BAD_REQUEST, "Clinica não encontrada"));
 		
-		Integer idFuncao = dto.getIdClinica();
+		Integer idFuncao = dto.getIdFuncao();
 		Funcao funcao =
 				funcaoRepository
 				.findById(idFuncao)
@@ -53,7 +53,7 @@ public class FuncionarioService {
 		funcionario.setClinica(clinica);
 		funcionario.setFuncao(funcao);
 		funcionario.setNome(dto.getNome());
-		funcionario.setDataNascimento(dto.getNome());
+		funcionario.setDataNascimento(dto.getDataNascimento());
 		funcionario.setCpf(dto.getCpf());
 		funcionario.setTelefone(dto.getTelefone());
 		funcionario.setEmail(dto.getEmail());
