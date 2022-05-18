@@ -7,10 +7,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class AgendaDTO {
 
-	private Integer id;
+	private Integer id;	
+	private Integer idClinica;
 	private Integer idFuncionario;
+	private Integer idConsulta;
 	private String dataAtendimento;
 	private String hora;
-	private String paciente;
 	private String status;
 }

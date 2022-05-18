@@ -13,8 +13,10 @@ import org.springframework.stereotype.Service;
 
 import com.myclin.dto.AgendaDTO;
 import com.myclin.entity.Agenda;
+import com.myclin.entity.Clinica;
 import com.myclin.entity.Funcionario;
 import com.myclin.repository.AgendaRepository;
+import com.myclin.repository.ClinicaRepository;
 import com.myclin.repository.FuncionarioRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -27,10 +29,20 @@ public class AgendaService {
 	private AgendaRepository repository;
 	@Autowired
 	private FuncionarioRepository funcionarioRepository;
+	@Autowired
+	private ClinicaRepository clinicaRepository;
 	
 	public Agenda CreateAgenda(AgendaDTO dto) {
 		LocalDate data = LocalDate.parse(dto.getDataAtendimento(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
 		LocalTime hora = LocalTime.parse(dto.getHora(), DateTimeFormatter.ofPattern("HH:mm"));
+		Integer idClinica = dto.getIdClinica();
+		Clinica clinica =
+				clinicaRepository
+				.findById(idClinica)
+				.orElseThrow(() ->
+						new ResponseStatusException(
+								HttpStatus.BAD_REQUEST, "Clinica não encontrada"));
+		
 		Integer idFuncionario = dto.getIdFuncionario();
 		Funcionario funcionario =
 				funcionarioRepository
@@ -40,6 +52,7 @@ public class AgendaService {
 								HttpStatus.BAD_REQUEST, "Funcionario não encontrado"));
 		
 		Agenda agenda = new Agenda();
+		agenda.setClinica(clinica);
 		agenda.setFuncionario(funcionario);
 		agenda.setDataAtendimento(data);
 		agenda.setHora(hora);
