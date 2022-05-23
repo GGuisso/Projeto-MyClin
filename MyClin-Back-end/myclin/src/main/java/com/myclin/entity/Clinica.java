@@ -3,10 +3,8 @@ package com.myclin.entity;
 import java.time.LocalDate;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -15,7 +13,8 @@ import javax.persistence.PrePersist;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -63,16 +62,20 @@ public class Clinica {
 	@JsonFormat(pattern = "dd/MM/yyyy")
 	private LocalDate dataCadastro;
 	
-	@JsonManagedReference
-	@OneToMany(mappedBy = "clinica", targetEntity = Funcionario.class, cascade = CascadeType.ALL)
+	@JsonIgnore
+	@OneToMany(mappedBy = "clinica")
 	private List<Funcionario> funcionario;
 	
-	@JsonManagedReference
-	@OneToMany(mappedBy = "clinica", targetEntity = Paciente.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JsonIgnore
+	@OneToMany(mappedBy = "clinica")
 	private List<Paciente> paciente;
 	
-	@JsonManagedReference
-	@OneToMany(mappedBy = "clinica", targetEntity = Servico.class, cascade = CascadeType.ALL)
+	@JsonIgnore
+	@OneToMany(mappedBy = "clinica")
+	private List<User> user;
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "clinica")
 	private List<Servico> servico;
 	
 	@PrePersist

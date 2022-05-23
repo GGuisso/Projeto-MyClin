@@ -9,8 +9,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -32,7 +30,6 @@ public class Funcao {
 	private String funcao;
 	
 	@ManyToOne
-	@JsonBackReference
 	@JoinColumn(name = "clinica_id")
 	private Clinica clinica;
 	

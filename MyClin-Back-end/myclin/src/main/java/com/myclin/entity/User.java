@@ -5,7 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.validation.constraints.NotNull;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -17,17 +18,22 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Sala {
-	
+public class User {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
-	@Column(nullable = false, length = 150)
-	@NotNull(message = "Nome é campo obrigatório")
-	private String nome;
+	@Column( length = 20)
+	private String usuario;
 	
-	@Column(length = 255)
-	private String descricao;
+	@Column( length = 20)
+	private String senha;
+
+	@Column( length = 20)
+	private String role;
 	
+	@ManyToOne
+	@JoinColumn(name = "clinica_id")
+	private Clinica clinica;
 }
