@@ -19,18 +19,20 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.myclin.dto.ConsultaDTO;
 import com.myclin.entity.Consulta;
+import com.myclin.service.AgendaService;
 import com.myclin.service.ConsultaService;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping("/api/consulta")
 @Api("Consulta Controller")
+@RequiredArgsConstructor
 public class ConsultaController {
 
-	@Autowired
-	private ConsultaService consultaService;
+	private final ConsultaService consultaService;
 	
 	@PostMapping("salvar")
 	@ResponseStatus(HttpStatus.CREATED)

@@ -26,16 +26,11 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class ConsultaService {
 
-	@Autowired
-	private ConsultaRepository repository;
-	@Autowired
-	private FuncionarioRepository funcionarioRepository;
-	@Autowired
-	private ClinicaRepository clinicaRepository;
-	@Autowired
-	private PacienteRepository pacienteRepository;
-	@Autowired
-	private ServicoRepository servicoRepository;
+	private final ConsultaRepository repository;
+	private final FuncionarioRepository funcionarioRepository;
+	private final ClinicaRepository clinicaRepository;
+	private final PacienteRepository pacienteRepository;
+	private final ServicoRepository servicoRepository;
 	
 	public Consulta CreateConsulta(ConsultaDTO dto) {
 		Integer idClinica = dto.getIdClinica();

@@ -19,18 +19,20 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.myclin.dto.FuncionarioDTO;
 import com.myclin.entity.Funcionario;
+import com.myclin.service.AgendaService;
 import com.myclin.service.FuncionarioService;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping("/api/funcionarios")
 @Api("Funcionario Controller")
+@RequiredArgsConstructor
 public class FuncionarioController {
 
-	@Autowired
-	private FuncionarioService funcionarioService;
+	private final FuncionarioService funcionarioService;
 	
 	@PostMapping("salvar")
 	@ResponseStatus(HttpStatus.CREATED)

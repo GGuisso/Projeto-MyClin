@@ -19,18 +19,20 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.myclin.dto.PacienteDTO;
 import com.myclin.entity.Paciente;
+import com.myclin.service.AgendaService;
 import com.myclin.service.PacienteService;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping("/api/pacientes")
 @Api("Paciente Controller")
+@RequiredArgsConstructor
 public class PacienteController {
 
-	@Autowired
-	private PacienteService pacienteService;
+	private final PacienteService pacienteService;
 	
 	@PostMapping("salvar")
 	@ResponseStatus(HttpStatus.CREATED)

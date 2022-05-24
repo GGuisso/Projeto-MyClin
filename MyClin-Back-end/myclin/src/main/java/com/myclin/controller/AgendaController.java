@@ -23,14 +23,15 @@ import com.myclin.service.AgendaService;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping("/api/agenda")
 @Api("Agenda Controller")
+@RequiredArgsConstructor
 public class AgendaController {
 
-	@Autowired
-	private AgendaService agendaService;
+	private final AgendaService agendaService;
 	
 	@PostMapping("salvar")
 	@ResponseStatus(HttpStatus.CREATED)

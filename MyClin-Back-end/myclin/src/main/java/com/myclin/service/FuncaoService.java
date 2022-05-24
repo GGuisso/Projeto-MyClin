@@ -21,11 +21,8 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class FuncaoService {
 
-	@Autowired
-	private FuncaoRepository repository;
-	
-	@Autowired
-	private ClinicaRepository clinicaRepository;
+	private final FuncaoRepository repository;
+	private final ClinicaRepository clinicaRepository;
 	
 	public Funcao CreateFuncao(FuncaoDTO dto) {
 		Integer idClinica = dto.getIdClinica();

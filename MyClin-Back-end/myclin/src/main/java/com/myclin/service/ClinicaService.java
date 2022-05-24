@@ -17,8 +17,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class ClinicaService {
 
-	@Autowired
-	private ClinicaRepository repository;
+	private final ClinicaRepository repository;
 	
 	public Clinica CreateClinica(Clinica clinica) {
 		return repository.save(clinica);

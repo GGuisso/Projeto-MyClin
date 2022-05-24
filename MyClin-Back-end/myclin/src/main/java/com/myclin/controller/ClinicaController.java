@@ -18,18 +18,20 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.myclin.entity.Clinica;
+import com.myclin.service.AgendaService;
 import com.myclin.service.ClinicaService;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping("/api/clinica")
 @Api("Clinica Controller")
+@RequiredArgsConstructor
 public class ClinicaController {
 
-	@Autowired
-	private ClinicaService clinicaService;
+	private final ClinicaService clinicaService;
 	
 	@PostMapping("salvar")
 	@ResponseStatus(HttpStatus.CREATED)

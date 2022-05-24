@@ -20,11 +20,8 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class PacienteService {
 
-	@Autowired
-	private PacienteRepository repository;
-	
-	@Autowired
-	private ClinicaRepository clinicaRepository;
+	private final PacienteRepository repository;
+	private final ClinicaRepository clinicaRepository;
 	
 	public Paciente CreatePaciente(PacienteDTO dto) {
 		Integer idClinica = dto.getIdClinica();

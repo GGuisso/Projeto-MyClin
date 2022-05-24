@@ -25,12 +25,9 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class AgendaService {
 
-	@Autowired
-	private AgendaRepository repository;
-	@Autowired
-	private FuncionarioRepository funcionarioRepository;
-	@Autowired
-	private ClinicaRepository clinicaRepository;
+	private final AgendaRepository repository;
+	private final FuncionarioRepository funcionarioRepository;
+	private final ClinicaRepository clinicaRepository;
 	
 	public Agenda CreateAgenda(AgendaDTO dto) {
 		LocalDate data = LocalDate.parse(dto.getDataAtendimento(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));

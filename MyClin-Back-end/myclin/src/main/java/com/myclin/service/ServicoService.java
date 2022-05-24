@@ -20,10 +20,8 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class ServicoService {
 
-	@Autowired
-	private ServicoRepository repository;
-	@Autowired
-	private Converter converter;
+	private final ServicoRepository repository;
+	private final Converter converter;
 	
 	public Servico CreateServico(ServicoDTO dto) {
 		
