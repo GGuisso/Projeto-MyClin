@@ -1,9 +1,12 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "cli": {
+    "analytics": "0a1ec86f-cb1b-46a9-a632-ddbe4cf9dda6"
+  },
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "myclin": {
+    "conectados": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:application": {
@@ -17,7 +20,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/myclin",
+            "outputPath": "dist/conectados",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -27,9 +30,13 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/bootstrap/dist/js/bootstrap.bundle.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -68,10 +75,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "myclin:build:production"
+              "browserTarget": "conectados:build:production"
             },
             "development": {
-              "browserTarget": "myclin:build:development"
+              "browserTarget": "conectados:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -79,7 +86,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "myclin:build"
+            "browserTarget": "conectados:build"
           }
         },
         "test": {
@@ -102,5 +109,5 @@
       }
     }
   },
-  "defaultProject": "myclin"
+  "defaultProject": "conectados"
 }
