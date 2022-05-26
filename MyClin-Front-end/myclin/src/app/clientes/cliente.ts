@@ -5,9 +5,10 @@ export class Cliente{
     dataNascimento?: String;
     cpf?: String;
     telefone?: String;
+    email?: String;
     cep?: String;
     endereco?: String;
-    numEndereco?: number;
+    numeroEndereco?: number;
     complemento?: String;
     dataCadastro?: String;
 }
