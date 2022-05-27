@@ -13,6 +13,7 @@ import { Observable } from 'rxjs';
 export class ClientesFormComponent implements OnInit {
 
   cliente: Cliente;
+  clientes: Cliente[] = [];
   success: boolean = false;
   errors?: String[];
   id?: number;
@@ -25,6 +26,10 @@ export class ClientesFormComponent implements OnInit {
    }
 
   ngOnInit(): void {
+    this.service
+    .getClientes()
+    .subscribe( resposta => this.clientes = resposta );
+
     let params : Observable<any> = this.activatedRoute.params
     params.subscribe(urlParams => this.id = urlParams['id']);
     if(this.id){

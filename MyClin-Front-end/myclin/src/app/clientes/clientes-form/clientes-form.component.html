@@ -18,7 +18,12 @@
             <div class="col-md-3">
                 <div class="form-group">
                     <label>Clinica:</label>
-                    <input aria-label="input ID clinica" type="text" class="form-control" [(ngModel)]="cliente.idClinica" name="idClinica"/> 
+                    <select class="form-select" aria-label="id clinica">
+                        <option selected>Selecione a Clinica</option>
+                        <option *ngFor="let cliente of clientes" [ngValue]="cliente.idClinica">
+                            {{ cliente.nome }}
+                        </option>
+                    </select>
                 </div>
             </div>
             <div class="col-md-3">

@@ -45,10 +45,10 @@
             <td>{{ cliente.telefone }}</td>
             <td>{{ cliente.dataCadastro }}</td>
             <td>
-              <button type="button" class="btn btn-primary" routerLink="/clientes-form/{{ cliente.id }}">
+              <button aria-label="EditaPaciente" type="button" class="btn btn-primary" routerLink="/clientes-form/{{ cliente.id }}">
                 <i class="fas fa-user-edit"></i>
               </button>
-              <button type="button" class="btn btn-danger ml-1" data-bs-toggle="modal" data-bs-target="#modalDelecao"
+              <button aria-label="deletaPaciente" type="button" class="btn btn-danger ml-1" data-bs-toggle="modal" data-bs-target="#modalDelecao"
                 (click)="preparaDelete(cliente)">
                 <i class="fas fa-trash"></i>
               </button>
