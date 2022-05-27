@@ -24,14 +24,11 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
-	@Column( length = 20)
-	private String usuario;
+	@Column(unique = true)
+	private String username;
 	
 	@Column( length = 20)
-	private String senha;
-
-	@Column( length = 20)
-	private String role;
+	private String password;
 	
 	@ManyToOne
 	@JoinColumn(name = "clinica_id")
