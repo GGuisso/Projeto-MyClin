@@ -66,7 +66,7 @@ public class Paciente {
 	@JsonFormat(pattern = "dd/MM/yyyy")
 	private LocalDate dataCadastro;
 	
-	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "clinica_id")
 	private Clinica clinica;

@@ -40,10 +40,10 @@ public class Clinica {
 	@NotNull(message = "cnpj é campo obrigatório")
 	private String cnpj;
 	
-	@Column(nullable = false, length = 11)
+	@Column(length = 11)
 	private String telefone;
 	
-	@Column(nullable = false, length = 50)
+	@Column(length = 50)
 	private String email;
 	
 	@Column(length = 9)
@@ -72,7 +72,7 @@ public class Clinica {
 	
 	@JsonIgnore
 	@OneToMany(mappedBy = "clinica")
-	private List<User> user;
+	private List<Usuario> usuario;
 	
 	@JsonIgnore
 	@OneToMany(mappedBy = "clinica")

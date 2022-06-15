@@ -1,8 +1,8 @@
 package com.myclin.controller;
 
 import com.myclin.dto.UserDTO;
-import com.myclin.entity.User;
-import com.myclin.service.UserService;
+import com.myclin.entity.Usuario;
+import com.myclin.service.UsuarioService;
 
 import java.util.List;
 
@@ -27,43 +27,43 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("/api/user")
 @Api("User Controller")
 @RequiredArgsConstructor
-public class UserController {
+public class UsuarioController {
 
 
-	private final UserService userService;
+	private final UsuarioService usuarioService;
 	
 	@PostMapping("salvar")
 	@ResponseStatus(HttpStatus.CREATED)
 	@ApiOperation("Insere uma nova User")
-	public User salvar(@RequestBody @Valid UserDTO user) {
-		return userService.CreateUser(user);
+	public Usuario salvar(@RequestBody @Valid UserDTO user) {
+		return usuarioService.CreateUser(user);
 	}
 	
 	@GetMapping("buscar/{id}")
 	@ResponseStatus(HttpStatus.OK)
 	@ApiOperation("Busca por ID")
-	public ResponseEntity<User> buscarPorId(@PathVariable Integer id) {
-		return userService.findUserById(id);
+	public ResponseEntity<Usuario> buscarPorId(@PathVariable Integer id) {
+		return usuarioService.findUserById(id);
 	}
 	
 	@GetMapping("listar")
 	@ResponseStatus(HttpStatus.OK)
 	@ApiOperation("Lista todas as Users")
-	public List<User> listarTodos(){
-		return userService.listAllUser();
+	public List<Usuario> listarTodos(){
+		return usuarioService.listAllUser();
 	}
 	
 	@DeleteMapping("deletar/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	@ApiOperation("Remove uma User por ID")
 	public ResponseEntity<Object> excluir(@PathVariable Integer id) {
-		return userService.deleteUserById(id);	
+		return usuarioService.deleteUserById(id);	
 	}
 	
 	@PutMapping("atualizar/{id}")
 	@ResponseStatus(HttpStatus.OK)
 	@ApiOperation("Atualiza a User")
-	public ResponseEntity<User> atualizar(@PathVariable Integer id, @RequestBody @Valid User User) {
-		return userService.updateUserById(User, id);
+	public ResponseEntity<Usuario> atualizar(@PathVariable Integer id, @RequestBody @Valid Usuario Usuario) {
+		return usuarioService.updateUserById(Usuario, id);
 	}
 }
